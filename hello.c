@@ -1,71 +1,63 @@
 #include <linux/init.h>
-#include <linux/module.h>
 #include <linux/printk.h>
-#include <linux/ktime.h>
-#include <linux/slab.h>
+#include <linux/types.h>
+#include <linux/module.h>
 #include <linux/list.h>
+#include <linux/slab.h>
+#include <linux/ktime.h>
 
-MODULE_AUTHOR("Bondarenko Serhii IO-05");
-MODULE_DESCRIPTION("lab 7");
+MODULE_AUTHOR("Vasylkevych Ivan");
+MODULE_DESCRIPTION("Lab_work_6");
 MODULE_LICENSE("Dual BSD/GPL");
 
+static unsigned int greetnum=1;
 
-struct head_list {
-	ktime_t time;
-	struct list_head list_node;
+module_param(greetnum,uint,S_IRUGO);
+
+MODULE_PARM_DESC(greetnum, "Hellow world prints num");
+
+struct event_list {
+    struct list_head list;
+    ktime_t event_time;
+
+
 };
 
-static struct list_head my_list_head = LIST_HEAD_INIT(my_list_head);
+static struct list_head event_list_head;
 
-static int greetnum = 1;
-module_param(greetnum, uint, 0444);
-MODULE_PARM_DESC(greetnum, "String: how many times Hello world was printed");
 
+static LIST_HEAD(event_list_head);
+void new_event(void);
 static int __init hello_init(void)
 {
-	uint i = 0;
-	struct head_list *tail;
-	
-	if (greetnum == 0) {pr_warn("param equals 0");}
-       	else if (greetnum >= 5 && greetnum <= 10) {pr_warn("param is 5-10");} 
-	BUG_ON(greetnum > 10);
+    if (greetnum==0 || (greetnum>=5 && greetnum<=10)) {
+        printk(KERN_WARNING "Param is 0 or 5-10");}
 
-	for (i = 0 ; i < greetnum; i++) {
-		
-		tail = kmalloc(sizeof(struct head_list), GFP_KERNEL); 
-		if (i == 5)
-		    tail = 0;
-		if(ZERO_OR_NULL_PTR(tail))
-			goto error;
-		tail->time = ktime_get();
-		list_add_tail(&(tail->list_node), &my_list_head);
-		pr_info("Hello world\n");}
+    if (greetnum>10) {
+        printk(KERN_ERR "Parame<10");
+        return -EINVAL;}
+  
+    int i;
+    for (i = 0; i <greetnum; i++) {
+        printk(KERN_EMERG "Hello, World!\n");
+        new_event();}
+  return 0;}
 
-	return 0;
-
-error:
-	{
-		struct head_list *md, *tmp;
-		pr_err("kmalloc out of memory");
-		list_for_each_entry_safe(md, tmp, &my_list_head, list_node) {
-			list_del(&md->list_node);
-			kfree(md);
-		}
-		BUG();
-		return -ENOMEM;
-	}
-	
+static void __exit hello_exit(void) {
+  struct event_list *md, *tmp;
+  list_for_each_entry_safe(md, tmp, &event_list_head, list) {
+    printk(KERN_EMERG "Time: %lld\n", md->event_time);
+    list_del(&md->list);
+    kfree(md);
+  }
 }
 
-static void __exit hello_exit(void)
-{
-	struct head_list *md, *tmp;
-
-	list_for_each_entry_safe(md, tmp, &my_list_head, list_node) {
-		pr_info("time: %lld\n", md->time);
-		list_del(&md->list_node);
-		kfree(md);
-	}
+void new_event(void) {
+    struct event_list *element = NULL;
+    element = kmalloc(sizeof(struct event_list), GFP_KERNEL);
+    element->event_time = ktime_get();
+    list_add_tail(&element->list, &event_list_head);
 }
+
 module_init(hello_init);
 module_exit(hello_exit);
