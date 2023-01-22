@@ -57,38 +57,12 @@ deps_/home/serhii/test2/hello.o := \
     $(wildcard include/config/lbdaf.h) \
     $(wildcard include/config/arch/dma/addr/t/64bit.h) \
     $(wildcard include/config/phys/addr/t/64bit.h) \
-  include/linux/printk.h \
-    $(wildcard include/config/message/loglevel/default.h) \
-    $(wildcard include/config/console/loglevel/default.h) \
-    $(wildcard include/config/console/loglevel/quiet.h) \
-    $(wildcard include/config/early/printk.h) \
-    $(wildcard include/config/printk/nmi.h) \
-    $(wildcard include/config/printk.h) \
-    $(wildcard include/config/dynamic/debug.h) \
-  /opt/gcc-arm-8.3-2019.03-x86_64-arm-linux-gnueabihf/lib/gcc/arm-linux-gnueabihf/8.3.0/include/stdarg.h \
-  include/linux/kern_levels.h \
-  include/linux/linkage.h \
-  include/linux/stringify.h \
-  include/linux/export.h \
-    $(wildcard include/config/modules.h) \
-    $(wildcard include/config/modversions.h) \
-    $(wildcard include/config/module/rel/crcs.h) \
-    $(wildcard include/config/trim/unused/ksyms.h) \
-    $(wildcard include/config/unused/symbols.h) \
-  arch/arm/include/asm/linkage.h \
-  include/linux/cache.h \
-    $(wildcard include/config/arch/has/cache/line/size.h) \
-  include/uapi/linux/kernel.h \
-  include/uapi/linux/sysinfo.h \
-  include/linux/const.h \
-  include/uapi/linux/const.h \
-  arch/arm/include/asm/cache.h \
-    $(wildcard include/config/arm/l1/cache/shift.h) \
-    $(wildcard include/config/aeabi.h) \
   include/linux/module.h \
+    $(wildcard include/config/modules.h) \
     $(wildcard include/config/sysfs.h) \
     $(wildcard include/config/modules/tree/lookup.h) \
     $(wildcard include/config/livepatch.h) \
+    $(wildcard include/config/unused/symbols.h) \
     $(wildcard include/config/module/sig.h) \
     $(wildcard include/config/generic/bug.h) \
     $(wildcard include/config/kallsyms.h) \
@@ -105,6 +79,8 @@ deps_/home/serhii/test2/hello.o := \
   include/linux/poison.h \
     $(wildcard include/config/illegal/pointer/value.h) \
     $(wildcard include/config/page/poisoning/zero.h) \
+  include/linux/const.h \
+  include/uapi/linux/const.h \
   include/linux/kernel.h \
     $(wildcard include/config/preempt/voluntary.h) \
     $(wildcard include/config/debug/atomic/sleep.h) \
@@ -112,6 +88,14 @@ deps_/home/serhii/test2/hello.o := \
     $(wildcard include/config/prove/locking.h) \
     $(wildcard include/config/arch/has/refcount.h) \
     $(wildcard include/config/panic/timeout.h) \
+  /opt/gcc-arm-8.3-2019.03-x86_64-arm-linux-gnueabihf/lib/gcc/arm-linux-gnueabihf/8.3.0/include/stdarg.h \
+  include/linux/linkage.h \
+  include/linux/stringify.h \
+  include/linux/export.h \
+    $(wildcard include/config/modversions.h) \
+    $(wildcard include/config/module/rel/crcs.h) \
+    $(wildcard include/config/trim/unused/ksyms.h) \
+  arch/arm/include/asm/linkage.h \
   include/linux/bitops.h \
   include/linux/bits.h \
   arch/arm/include/asm/bitops.h \
@@ -153,6 +137,9 @@ deps_/home/serhii/test2/hello.o := \
     $(wildcard include/config/arm/errata/754327.h) \
   arch/arm/include/asm/hw_breakpoint.h \
   arch/arm/include/asm/unified.h \
+  arch/arm/include/asm/cache.h \
+    $(wildcard include/config/arm/l1/cache/shift.h) \
+    $(wildcard include/config/aeabi.h) \
   arch/arm/include/asm/cmpxchg.h \
     $(wildcard include/config/cpu/sa1100.h) \
     $(wildcard include/config/cpu/sa110.h) \
@@ -174,6 +161,19 @@ deps_/home/serhii/test2/hello.o := \
   include/linux/log2.h \
     $(wildcard include/config/arch/has/ilog2/u32.h) \
     $(wildcard include/config/arch/has/ilog2/u64.h) \
+  include/linux/printk.h \
+    $(wildcard include/config/message/loglevel/default.h) \
+    $(wildcard include/config/console/loglevel/default.h) \
+    $(wildcard include/config/console/loglevel/quiet.h) \
+    $(wildcard include/config/early/printk.h) \
+    $(wildcard include/config/printk/nmi.h) \
+    $(wildcard include/config/printk.h) \
+    $(wildcard include/config/dynamic/debug.h) \
+  include/linux/kern_levels.h \
+  include/linux/cache.h \
+    $(wildcard include/config/arch/has/cache/line/size.h) \
+  include/uapi/linux/kernel.h \
+  include/uapi/linux/sysinfo.h \
   include/linux/build_bug.h \
   arch/arm/include/asm/div64.h \
   arch/arm/include/asm/compiler.h \
